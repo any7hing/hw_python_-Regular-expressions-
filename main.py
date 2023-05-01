@@ -47,8 +47,7 @@ def final_sort_list():
 
         except (KeyError):
             result_dict[" ".join(result_list[i][0].split()[0:2])] = {}
-            result_dict[" ".join(result_list[i][0].split()[0:2])] = (
-                {
+            result_dict[" ".join(result_list[i][0].split()[0:2])] = {
                     'last_name': " ".join(result_list[i][0].split()[0:1]),
                     'first_name': " ".join(result_list[i][0].split()[1:2]),
                     'surname': " ".join(result_list[i][0].split()[2:3]),
@@ -57,15 +56,27 @@ def final_sort_list():
                     'phone': result_list[i][3],
                     'email': result_list[i][4]
                 }
-                )
 
 
 if __name__ == '__main__':
     make_contacts_list()
     make_phone_number()
+    res =[]
+    buff = []
     result_list = list(zip(name, organisation, position, phone, email))
+    for i in result_list:
+        buff = []
+        res.append(buff)
+        for j in i:
+            buff.append(j)
+    result_list = res
+
     final_sort_list()
 
+field_names = ['full_name', 'last_name', 'first_name', 'surname', 'organization', 'position', 'phone', 'email']
 with open("phonebook.csv", "w", encoding='utf-8') as f:
-    datawriter = csv.writer(f, delimiter=',')
-    datawriter.writerows(result_dict.items())
+    datawriter = csv.DictWriter(f,delimiter=",", fieldnames=field_names, dialect='unix')
+    datawriter.writeheader()
+    for i in result_dict.items():
+        i[1].update({'full_name':i[0]})
+        datawriter.writerow(i[1])
