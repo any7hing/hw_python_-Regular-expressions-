@@ -26,9 +26,9 @@ def make_contacts_list():
 def make_phone_number():
     for i in range(len(phone)):
         if phone[i]:
-            phone[i] = '+7'+'('+phone[i][1:4]+')' + phone[i][3:]    
+            phone[i] = '+7'+'('+phone[i][1:4]+')' + phone[i][3:]
         if len(phone[i]) > 15:
-            phone[i] = phone[i][0:15] + ' доб.' + phone[i][15:]      
+            phone[i] = phone[i][0:15] + ' доб.' + phone[i][15:]
 
 
 def final_sort_list():
@@ -61,8 +61,6 @@ def final_sort_list():
 if __name__ == '__main__':
     make_contacts_list()
     make_phone_number()
-    res =[]
-    buff = []
     result_list = list(zip(name, organisation, position, phone, email))
     final_sort_list()
 
