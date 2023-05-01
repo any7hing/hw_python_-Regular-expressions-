@@ -64,14 +64,8 @@ if __name__ == '__main__':
     res =[]
     buff = []
     result_list = list(zip(name, organisation, position, phone, email))
-    for i in result_list:
-        buff = []
-        res.append(buff)
-        for j in i:
-            buff.append(j)
-    result_list = res
-
     final_sort_list()
+
 
 field_names = ['full_name', 'last_name', 'first_name', 'surname', 'organization', 'position', 'phone', 'email']
 with open("phonebook.csv", "w", encoding='utf-8') as f:
